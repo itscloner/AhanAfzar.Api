@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopManagment.Domain.ProductAgg;
 using ShopManagment.Domain.ProductBrandAgg;
 using ShopManagment.Domain.ProductCategoryAgg;
 using ShopManagment.Domain.ProductStandardAgg;
@@ -13,6 +14,7 @@ namespace ShopManagment.Infrustructure.EfCore
         public DbSet<ProductStandard> ProductStandards { get; set; }
         public DbSet<ProductUnit> ProductUnits { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<Product> Products { get; set; }
         public ShopManagmentContext(DbContextOptions<ShopManagmentContext> options) : base(options)
         {
         }
@@ -23,6 +25,7 @@ namespace ShopManagment.Infrustructure.EfCore
             modelBuilder.ApplyConfiguration(new ProductStandardMapping());
             modelBuilder.ApplyConfiguration(new ProductUnitMapping());
             modelBuilder.ApplyConfiguration(new ProductBrandMapping());
+            modelBuilder.ApplyConfiguration(new ProductMapping());
 
             base.OnModelCreating(modelBuilder);
         }

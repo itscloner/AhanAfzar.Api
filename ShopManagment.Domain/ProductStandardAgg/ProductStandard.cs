@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagment.Domain.ProductAgg;
 
 namespace ShopManagment.Domain.ProductStandardAgg
 {
@@ -9,6 +10,8 @@ namespace ShopManagment.Domain.ProductStandardAgg
         public string Keyword { get; set; }
         public string MetaDescription { get; set; }
         public string Slug { get; set; }
+
+        public ICollection<Product> Products { get; set; } = new List<Product>();
 
         public ProductStandard(string name, string description, 
              string keyword, string metaDescription, string slug)
