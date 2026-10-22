@@ -15,7 +15,7 @@ namespace AhanAfzar.WebApi.Controllers
         }
 
         /// <summary>
-        /// ایجاد استاندارد محصول
+        /// ایجاد واحد محصول
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -26,7 +26,7 @@ namespace AhanAfzar.WebApi.Controllers
         }
 
         /// <summary>
-        /// لیست تمامی استاندارد های محصول
+        /// لیست تمامی واحد های محصول
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -35,7 +35,7 @@ namespace AhanAfzar.WebApi.Controllers
             return _productStandardApplication.List();
         }
         /// <summary>
-        /// دریافت جزئیات استاندارد ها براساس ID
+        /// دریافت جزئیات واحد ها براساس ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -45,8 +45,8 @@ namespace AhanAfzar.WebApi.Controllers
             return _productStandardApplication.GetProductStandard(id);
         }
         /// <summary>
-        /// ایجاد استاندارد محصول
-        /// دریافت جزئیات استاندارد محصول براساس کد یونیک
+        /// ایجاد واحد محصول
+        /// دریافت جزئیات واحد محصول براساس کد یونیک
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace AhanAfzar.WebApi.Controllers
             return new JsonResult(result);
         }
         /// <summary>
-        /// حذف منطقی استاندارد محصول
+        /// حذف منطقی واحد محصول
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagment.Application;
+using ShopManagment.Application.Contracts.ProductBrand;
 using ShopManagment.Application.Contracts.ProductCategory;
 using ShopManagment.Application.Contracts.ProductStandard;
 using ShopManagment.Application.Contracts.ProductUnit;
+using ShopManagment.Domain.ProductBrandAgg;
 using ShopManagment.Domain.ProductCategoryAgg;
 using ShopManagment.Domain.ProductStandardAgg;
 using ShopManagment.Domain.ProductUnitAgg;
@@ -24,6 +26,10 @@ namespace ShopManagment.Infrustructure.Configuration
 
             services.AddTransient<IProductUnitApplication, ProductUnitApplication>();
             services.AddTransient<IProductUnitRepository, ProductUnitRepository>();
+
+            services.AddTransient<IProductBrandApplication, ProductBrandApplication>();
+            services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
+
 
             services.AddDbContext<ShopManagmentContext>(x => x.UseSqlServer(connectionString));
 
