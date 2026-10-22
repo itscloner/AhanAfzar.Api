@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopManagment.Domain.ProductCategoryAgg;
 using ShopManagment.Domain.ProductStandardAgg;
+using ShopManagment.Domain.ProductUnitAgg;
 using ShopManagment.Infrustructure.EfCore.Mapping;
 
 namespace ShopManagment.Infrustructure.EfCore
@@ -9,6 +10,7 @@ namespace ShopManagment.Infrustructure.EfCore
     {
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductStandard> ProductStandards { get; set; }
+        public DbSet<ProductUnit> ProductUnits { get; set; }
         public ShopManagmentContext(DbContextOptions<ShopManagmentContext> options) : base(options)
         {
         }

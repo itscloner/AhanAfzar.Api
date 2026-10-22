@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagment.Application.Contracts.ProductStandard;
+using Microsoft.AspNetCore.Mvc;
+using ShopManagment.Application.Contracts.ProductUnit;
 
 namespace AhanAfzar.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductStandardController : ControllerBase
+    public class ProductUnitController : ControllerBase
     {
-        private readonly IProductStandardApplication _productStandardApplication;
+        private readonly IProductUnitApplication _productUnitApplication;
 
-        public ProductStandardController(IProductStandardApplication productStandardApplication)
+        public ProductUnitController(IProductUnitApplication productUnitApplication)
         {
-            _productStandardApplication = productStandardApplication;
+            _productUnitApplication = productUnitApplication;
         }
 
         /// <summary>
@@ -19,9 +20,9 @@ namespace AhanAfzar.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult CreateProductStandard([FromBody] CreateProductStandard command)
+        public JsonResult CreateProductUnit([FromBody] CreateProductUnit command)
         {
-            var result = _productStandardApplication.Create(command);
+            var result = _productUnitApplication.Create(command);
             return new JsonResult(result);
         }
 
@@ -30,9 +31,9 @@ namespace AhanAfzar.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<ProductStandardViewModel> GetAllProductStandard()
+        public List<ProductUnitViewModel> GetAllProductUnit()
         {
-            return _productStandardApplication.List();
+            return _productUnitApplication.List();
         }
         /// <summary>
         /// دریافت جزئیات استاندارد ها براساس ID
@@ -40,9 +41,9 @@ namespace AhanAfzar.WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:long}")]
-        public ProductStandardViewModel GetById([FromRoute] long id)
+        public ProductUnitViewModel GetById([FromRoute] long id)
         {
-            return _productStandardApplication.GetProductStandard(id);
+            return _productUnitApplication.GetProductUnit(id);
         }
         /// <summary>
         /// ایجاد استاندارد محصول
@@ -50,19 +51,19 @@ namespace AhanAfzar.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("StandardDetail/{id:long}")]
-        public ProductStandardViewModel GetProductStandardById(long id)
+        [HttpGet("UnitDetail/{id:long}")]
+        public ProductUnitViewModel GetProductUnitById(long id)
         {
-            return _productStandardApplication.GetBy(id);
+            return _productUnitApplication.GetBy(id);
         }
         /// <summary>
         /// ویرایش دسته محصول
         /// </summary>
         /// <param name="command"></param>
         [HttpPut("{id:long}")]
-        public JsonResult EditProductStandard([FromBody] EditProductStandard command)
+        public JsonResult EditProductUnit([FromBody] EditProductUnit command)
         {
-            var result = _productStandardApplication.Edit(command);
+            var result = _productUnitApplication.Edit(command);
             return new JsonResult(result);
         }
         /// <summary>
@@ -71,9 +72,9 @@ namespace AhanAfzar.WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id:long}")]
-        public JsonResult DeleteProductStandard([FromRoute] long id)
+        public JsonResult DeleteProductUnit([FromRoute] long id)
         {
-            var result = _productStandardApplication.Delete(id);
+            var result = _productUnitApplication.Delete(id);
             return new JsonResult(result);
         }
 
