@@ -25,7 +25,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.ProductCategory", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("ProductCategories", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.ProductStandard", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.Standard", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

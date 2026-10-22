@@ -80,7 +80,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.ProductBrand", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.Brand", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +119,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("ProductBrands", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.ProductCategory", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -170,7 +170,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("ProductCategories", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.ProductStandard", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.Standard", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -209,7 +209,7 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("ProductStandards", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductUnitAgg.ProductUnit", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductUnitAgg.Unit", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,16 +250,16 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
 
             modelBuilder.Entity("ShopManagment.Domain.ProductAgg.Product", b =>
                 {
-                    b.HasOne("ShopManagment.Domain.ProductCategoryAgg.ProductCategory", "ProductCategory")
+                    b.HasOne("ShopManagment.Domain.ProductCategoryAgg.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductCategory");
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.ProductCategory", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.Category", b =>
                 {
                     b.Navigation("Products");
                 });

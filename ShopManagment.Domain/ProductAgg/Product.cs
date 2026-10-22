@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using ShopManagment.Domain.ProductCategoryAgg;
-using ShopManagment.Domain.ProductStandardAgg;
-using ShopManagment.Domain.ProductUnitAgg;
+using ShopManagment.Domain.CategoryAgg;
+using ShopManagment.Domain.StandardAgg;
+using ShopManagment.Domain.UnitAgg;
 using System.Drawing;
 
 namespace ShopManagment.Domain.ProductAgg
@@ -17,17 +17,17 @@ namespace ShopManagment.Domain.ProductAgg
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
 
-        public long ProductCategoryId { get; set; }
-        public ProductCategory ProductCategory { get; set; }
+        public long CategoryId { get; set; }
+        public Category Category { get; set; }
 
-        public long ProductStandardId { get; set; }
-        public ProductStandard ProductStandard { get; set; }
+        public long StandardId { get; set; }
+        public Standard Standard { get; set; }
 
-        public long ProductUnitId { get; set; }
-        public ProductUnit ProductUnit { get; set; }
+        public long UnitId { get; set; }
+        public Unit Unit { get; set; }
 
         public Product(string code, string name, string description, string size, decimal weight,
-            string picture, string pictureAlt, string pictureTitle, long productCategoryId, long productStandardId, long productUnitId)
+            string picture, string pictureAlt, string pictureTitle, long categoryId, long standardId, long unitId)
         {
             Code = code;
             Name = name;
@@ -37,13 +37,13 @@ namespace ShopManagment.Domain.ProductAgg
             Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
-            ProductCategoryId = productCategoryId;
-            ProductStandardId = productStandardId;
-            ProductUnitId = productUnitId;
+            CategoryId = categoryId;
+            StandardId = standardId;
+            UnitId = unitId;
         }
 
         public void Edit(string code, string name, string description, string size, decimal weight,
-            string picture, string pictureAlt, string pictureTitle, long productCategoryId, long productStandardId, long productUnitId)
+            string picture, string pictureAlt, string pictureTitle, long categoryId, long standardId, long unitId)
         {
             Code = code;
             Name = name;
@@ -53,9 +53,9 @@ namespace ShopManagment.Domain.ProductAgg
             Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
-            ProductCategoryId = productCategoryId;
-            ProductStandardId = productStandardId;
-            ProductUnitId = productUnitId;
+            CategoryId = categoryId;
+            StandardId = standardId;
+            UnitId = unitId;
 
         }
         public void Removed()

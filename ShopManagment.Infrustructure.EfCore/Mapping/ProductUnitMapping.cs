@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagment.Domain.ProductUnitAgg;
+using ShopManagment.Domain.UnitAgg;
 
 namespace ShopManagment.Infrustructure.EfCore.Mapping
 {
-    public class ProductUnitMapping : IEntityTypeConfiguration<ProductUnit>
+    public class ProductUnitMapping : IEntityTypeConfiguration<Unit>
     {
-        public void Configure(EntityTypeBuilder<ProductUnit> builder)
+        public void Configure(EntityTypeBuilder<Unit> builder)
         {
             builder.ToTable("ProductUnits");
             builder.HasKey(x => x.Id);
@@ -17,8 +17,8 @@ namespace ShopManagment.Infrustructure.EfCore.Mapping
             builder.Property(x => x.Slug);
 
             builder.HasMany(x => x.Products)
-                .WithOne(x => x.ProductUnit)
-                .HasForeignKey(x => x.ProductUnitId);
+                .WithOne(x => x.Unit)
+                .HasForeignKey(x => x.UnitId);
 
         }
     }

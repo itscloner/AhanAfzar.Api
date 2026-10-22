@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopManagment.Domain.ProductAgg;
-using ShopManagment.Domain.ProductBrandAgg;
-using ShopManagment.Domain.ProductCategoryAgg;
-using ShopManagment.Domain.ProductStandardAgg;
-using ShopManagment.Domain.ProductUnitAgg;
+using ShopManagment.Domain.BrandAgg;
+using ShopManagment.Domain.CategoryAgg;
+using ShopManagment.Domain.StandardAgg;
+using ShopManagment.Domain.UnitAgg;
 using ShopManagment.Infrustructure.EfCore.Mapping;
 
 namespace ShopManagment.Infrustructure.EfCore
 {
     public class ShopManagmentContext : DbContext 
     {
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductStandard> ProductStandards { get; set; }
-        public DbSet<ProductUnit> ProductUnits { get; set; }
-        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Standard> Standards { get; set; }
+        public DbSet<Unit> Units { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> Products { get; set; }
         public ShopManagmentContext(DbContextOptions<ShopManagmentContext> options) : base(options)
         {
@@ -21,10 +21,10 @@ namespace ShopManagment.Infrustructure.EfCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ProductCategoryMapping());
-            modelBuilder.ApplyConfiguration(new ProductStandardMapping());
+            modelBuilder.ApplyConfiguration(new CategoryMapping());
+            modelBuilder.ApplyConfiguration(new StandardMapping());
             modelBuilder.ApplyConfiguration(new ProductUnitMapping());
-            modelBuilder.ApplyConfiguration(new ProductBrandMapping());
+            modelBuilder.ApplyConfiguration(new BrandMapping());
             modelBuilder.ApplyConfiguration(new ProductMapping());
 
             base.OnModelCreating(modelBuilder);

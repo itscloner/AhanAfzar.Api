@@ -1,9 +1,9 @@
 ﻿using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagment.Application.Contracts.Product;
-using ShopManagment.Application.Contracts.ProductCategory;
-using ShopManagment.Application.Contracts.ProductStandard;
-using ShopManagment.Application.Contracts.ProductUnit;
+using ShopManagment.Application.Contracts.Category;
+using ShopManagment.Application.Contracts.Standard;
+using ShopManagment.Application.Contracts.Unit;
 using ShopManagment.Domain.ProductAgg;
 
 namespace ShopManagment.Infrustructure.EfCore.Repository
@@ -20,9 +20,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
         public ProductViewModel GetBy(long id)
         {
             return _context.Products
-                .Include(x => x.ProductCategory)
-                .Include(x => x.ProductStandard)
-                .Include(x => x.ProductUnit)
+                .Include(x => x.Category)
+                .Include(x => x.Standard)
+                .Include(x => x.Unit)
                 .Select(x => new ProductViewModel
             {
                 Code = x.Code,
@@ -33,23 +33,23 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
-                ProductCategory = new ProductCategoryViewModel
+                Category = new CategoryViewModel
                 {
-                    Id = x.ProductCategory.Id,
-                    Name = x.ProductCategory.Name,
-                    Description = x.ProductCategory.Description,
+                    Id = x.Category.Id,
+                    Name = x.Category.Name,
+                    Description = x.Category.Description,
                 },
-                ProductStandard = new ProductStandardViewModel
+                Standard = new StandardViewModel
                 {
-                    Id = x.ProductStandard.Id,
-                    Name = x.ProductStandard.Name,
-                    Description = x.ProductStandard.Description,
+                    Id = x.Standard.Id,
+                    Name = x.Standard.Name,
+                    Description = x.Standard.Description,
                 },
-                ProductUnit = new ProductUnitViewModel
+                Unit = new UnitViewModel
                 {
-                    Id = x.ProductUnit.Id,
-                    Name = x.ProductUnit.Name,
-                    Description = x.ProductUnit.Description,
+                    Id = x.Unit.Id,
+                    Name = x.Unit.Name,
+                    Description = x.Unit.Description,
                 }
               }).FirstOrDefault(x => x.Id == id);
         }
@@ -57,9 +57,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
         public List<ProductViewModel> List()
         {
             return _context.Products
-                .Include(x => x.ProductCategory)
-                .Include(x => x.ProductStandard)
-                .Include(x => x.ProductUnit)
+                .Include(x => x.Category)
+                .Include(x => x.Standard)
+                .Include(x => x.Unit)
                 .Select(x => new ProductViewModel
             {
                 Code = x.Code,
@@ -70,23 +70,23 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
-                ProductCategory = new ProductCategoryViewModel
+                Category = new CategoryViewModel
                 {
-                    Id = x.ProductCategory.Id,
-                    Name = x.ProductCategory.Name,
-                    Description = x.ProductCategory.Description,
+                    Id = x.Category.Id,
+                    Name = x.Category.Name,
+                    Description = x.Category.Description,
                 },
-                ProductStandard = new ProductStandardViewModel
+                Standard = new StandardViewModel
                 {
-                    Id = x.ProductStandard.Id,
-                    Name = x.ProductStandard.Name,
-                    Description = x.ProductStandard.Description,
+                    Id = x.Standard.Id,
+                    Name = x.Standard.Name,
+                    Description = x.Standard.Description,
                 },
-                ProductUnit = new ProductUnitViewModel
+                Unit = new UnitViewModel
                 {
-                    Id = x.ProductUnit.Id,
-                    Name = x.ProductUnit.Name,
-                    Description = x.ProductUnit.Description,
+                    Id = x.Unit.Id,
+                    Name = x.Unit.Name,
+                    Description = x.Unit.Description,
                 }
                 }).ToList();
         }
@@ -94,9 +94,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
         public List<ProductViewModel> Search(string name)
         {
             var query = _context.Products
-                .Include(x => x.ProductCategory)
-                .Include (x => x.ProductStandard)
-                .Include(x => x.ProductUnit)
+                .Include(x => x.Category)
+                .Include(x => x.Standard)
+                .Include(x => x.Unit)
                 .Select(x => new ProductViewModel
             {
                 Code = x.Code,
@@ -107,23 +107,23 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
-                ProductCategory = new ProductCategoryViewModel
+                Category = new CategoryViewModel
                 {
-                    Id = x.ProductCategory.Id,
-                    Name = x.ProductCategory.Name,
-                    Description = x.ProductCategory.Description,
+                    Id = x.Category.Id,
+                    Name = x.Category.Name,
+                    Description = x.Category.Description,
                 },
-                ProductStandard = new ProductStandardViewModel
+                Standard = new StandardViewModel
                 {
-                    Id = x.ProductStandard.Id,
-                    Name = x.ProductStandard.Name,
-                    Description = x.ProductStandard.Description,
+                    Id = x.Standard.Id,
+                    Name = x.Standard.Name,
+                    Description = x.Standard.Description,
                 },
-                ProductUnit = new ProductUnitViewModel
+                Unit = new UnitViewModel
                 {
-                    Id = x.ProductUnit.Id,
-                    Name = x.ProductUnit.Name,
-                    Description = x.ProductUnit.Description,
+                    Id = x.Unit.Id,
+                    Name = x.Unit.Name,
+                    Description = x.Unit.Description,
                 }
                 });
 

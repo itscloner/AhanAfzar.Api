@@ -18,19 +18,19 @@ namespace ShopManagment.Infrustructure.EfCore.Mapping
             builder.Property(x => x.PictureTitle);
             builder.Property(x => x.Size);
             builder.Property(x => x.Weight);
-            builder.Property(x => x.ProductCategoryId);
+            builder.Property(x => x.CategoryId);
 
-            builder.HasOne(x => x.ProductCategory)
+            builder.HasOne(x => x.Category)
                 .WithMany(x => x.Products)
-                .HasForeignKey(x => x.ProductCategoryId);
+                .HasForeignKey(x => x.CategoryId);
 
-            builder.HasOne(x => x.ProductStandard)
+            builder.HasOne(x => x.Standard)
                 .WithMany(x => x.Products)
-                .HasForeignKey(x => x.ProductStandardId);
+                .HasForeignKey(x => x.StandardId);
 
-            builder.HasOne(x => x.ProductUnit)
+            builder.HasOne(x => x.Unit)
                 .WithMany(x => x.Products)
-                .HasForeignKey(x => x.ProductUnitId);
+                .HasForeignKey(x => x.UnitId);
         }
     }
 }

@@ -1,21 +1,21 @@
 ﻿using _0_Framework.Infrastructure;
-using ShopManagment.Application.Contracts.ProductStandard;
-using ShopManagment.Domain.ProductStandardAgg;
+using ShopManagment.Application.Contracts.Standard;
+using ShopManagment.Domain.StandardAgg;
 
 namespace ShopManagment.Infrustructure.EfCore.Repository
 {
-    public class ProductStandardRepository : ReposioryBase<long, ProductStandard>, IProductStandardRepository
+    public class StandardRepository : ReposioryBase<long, Standard>, IStandardRepository
     {
         private readonly ShopManagmentContext _context;
 
-        public ProductStandardRepository(ShopManagmentContext context) : base(context)
+        public StandardRepository(ShopManagmentContext context) : base(context)
         {
             _context = context;
         }
 
-        public ProductStandardViewModel GetBy(long id)
+        public StandardViewModel GetBy(long id)
         {
-            return _context.ProductStandards.Select(x => new ProductStandardViewModel
+            return _context.Standards.Select(x => new StandardViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -24,9 +24,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
-        public EditProductStandard GetDetails(long id)
+        public EditStandard GetDetails(long id)
         {
-            return _context.ProductStandards.Select(x => new EditProductStandard
+            return _context.Standards.Select(x => new EditStandard
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -36,9 +36,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
                 Slug = x.Slug
             }).FirstOrDefault(x => x.Id == id);
         }
-        public List<ProductStandardViewModel> List()
+        public List<StandardViewModel> List()
         {
-            return _context.ProductStandards.Select(x => new ProductStandardViewModel
+            return _context.Standards.Select(x => new StandardViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -46,9 +46,9 @@ namespace ShopManagment.Infrustructure.EfCore.Repository
             }).ToList();
         }
 
-        public List<ProductStandardViewModel> Search(string name)
+        public List<StandardViewModel> Search(string name)
         {
-            return _context.ProductStandards.Select(x => new ProductStandardViewModel
+            return _context.Standards.Select(x => new StandardViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

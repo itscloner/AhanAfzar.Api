@@ -1,6 +1,6 @@
-﻿using ShopManagment.Application.Contracts.ProductCategory;
-using ShopManagment.Application.Contracts.ProductStandard;
-using ShopManagment.Application.Contracts.ProductUnit;
+﻿using ShopManagment.Application.Contracts.Category;
+using ShopManagment.Application.Contracts.Standard;
+using ShopManagment.Application.Contracts.Unit;
 
 namespace ShopManagment.Application.Contracts.Product
 {
@@ -16,8 +16,8 @@ namespace ShopManagment.Application.Contracts.Product
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
 
-        public ProductCategoryViewModel ProductCategory { get; set; }
-        public ProductStandardViewModel ProductStandard { get; set; }
-        public ProductUnitViewModel ProductUnit { get; set; }
+        public CategoryViewModel Category { get; set; }
+        public StandardViewModel Standard { get; set; }
+        public UnitViewModel Unit { get; set; }
     }
 }
