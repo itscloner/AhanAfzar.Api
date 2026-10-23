@@ -8,7 +8,7 @@ namespace ShopManagment.Infrustructure.EfCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Standard> builder)
         {
-            builder.ToTable("ProductStandards");
+            builder.ToTable("Standards");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name);
             builder.Property(x => x.Description);

@@ -8,7 +8,7 @@ namespace ShopManagment.Infrustructure.EfCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("ProductCategories");
+            builder.ToTable("Categories");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name);
             builder.Property(x => x.Description);

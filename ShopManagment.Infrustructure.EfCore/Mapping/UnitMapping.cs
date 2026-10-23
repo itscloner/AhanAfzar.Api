@@ -4,11 +4,11 @@ using ShopManagment.Domain.UnitAgg;
 
 namespace ShopManagment.Infrustructure.EfCore.Mapping
 {
-    public class ProductUnitMapping : IEntityTypeConfiguration<Unit>
+    public class UnitMapping : IEntityTypeConfiguration<Unit>
     {
         public void Configure(EntityTypeBuilder<Unit> builder)
         {
-            builder.ToTable("ProductUnits");
+            builder.ToTable("Units");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name);
             builder.Property(x => x.Description);

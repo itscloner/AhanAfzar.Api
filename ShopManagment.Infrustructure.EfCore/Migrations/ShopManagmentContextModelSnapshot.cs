@@ -22,6 +22,96 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ShopManagment.Domain.BrandAgg.Brand", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Keyword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands", (string)null);
+                });
+
+            modelBuilder.Entity("ShopManagment.Domain.CategoryAgg.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Keyword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureAlt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories", (string)null);
+                });
+
             modelBuilder.Entity("ShopManagment.Domain.ProductAgg.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -29,6 +119,9 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -60,73 +153,55 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("ProductCategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProductStandardId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProductUnitId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Size")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("StandardId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UnitId")
+                        .HasColumnType("bigint");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProductStandardId");
+                    b.HasIndex("StandardId");
 
-                    b.HasIndex("ProductUnitId");
+                    b.HasIndex("UnitId");
 
                     b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.Brand", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.ProductBrand", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("BrandId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Keyword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("ProductId", "BrandId");
 
-                    b.Property<string>("MetaDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("ProductBrands", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.Category", b =>
+            modelBuilder.Entity("ShopManagment.Domain.StandardAgg.Standard", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,28 +231,16 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PictureAlt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PictureTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("Standards", (string)null);
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.Standard", b =>
+            modelBuilder.Entity("ShopManagment.Domain.UnitAgg.Unit", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,65 +276,26 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductStandards", (string)null);
-                });
-
-            modelBuilder.Entity("ShopManagment.Domain.ProductUnitAgg.Unit", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Keyword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MetaDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductUnits", (string)null);
+                    b.ToTable("Units", (string)null);
                 });
 
             modelBuilder.Entity("ShopManagment.Domain.ProductAgg.Product", b =>
                 {
-                    b.HasOne("ShopManagment.Domain.ProductCategoryAgg.Category", "Category")
+                    b.HasOne("ShopManagment.Domain.CategoryAgg.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagment.Domain.ProductStandardAgg.Standard", "Standard")
+                    b.HasOne("ShopManagment.Domain.StandardAgg.Standard", "Standard")
                         .WithMany("Products")
-                        .HasForeignKey("ProductStandardId")
+                        .HasForeignKey("StandardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagment.Domain.ProductUnitAgg.Unit", "Unit")
+                    b.HasOne("ShopManagment.Domain.UnitAgg.Unit", "Unit")
                         .WithMany("Products")
-                        .HasForeignKey("ProductUnitId")
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -282,17 +306,46 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.Navigation("Unit");
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductCategoryAgg.Category", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.ProductBrand", b =>
+                {
+                    b.HasOne("ShopManagment.Domain.BrandAgg.Brand", "Brand")
+                        .WithMany("ProductBrands")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShopManagment.Domain.ProductAgg.Product", "Product")
+                        .WithMany("ProductBrands")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ShopManagment.Domain.BrandAgg.Brand", b =>
+                {
+                    b.Navigation("ProductBrands");
+                });
+
+            modelBuilder.Entity("ShopManagment.Domain.CategoryAgg.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductStandardAgg.Standard", b =>
+            modelBuilder.Entity("ShopManagment.Domain.ProductAgg.Product", b =>
+                {
+                    b.Navigation("ProductBrands");
+                });
+
+            modelBuilder.Entity("ShopManagment.Domain.StandardAgg.Standard", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ShopManagment.Domain.ProductUnitAgg.Unit", b =>
+            modelBuilder.Entity("ShopManagment.Domain.UnitAgg.Unit", b =>
                 {
                     b.Navigation("Products");
                 });

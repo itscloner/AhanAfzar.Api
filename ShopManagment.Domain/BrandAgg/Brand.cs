@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagment.Domain.ProductBrandAgg;
 
 namespace ShopManagment.Domain.BrandAgg
 {
@@ -9,6 +10,8 @@ namespace ShopManagment.Domain.BrandAgg
         public string Keyword { get; set; }
         public string MetaDescription { get; set; }
         public string Slug { get; set; }
+
+        public ICollection<ProductBrand> ProductBrands { get; set; } = new List<ProductBrand>();
 
         public Brand(string name, string description, 
              string keyword, string metaDescription, string slug)

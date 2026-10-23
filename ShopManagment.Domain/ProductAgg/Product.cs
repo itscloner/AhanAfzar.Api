@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagment.Domain.CategoryAgg;
+using ShopManagment.Domain.ProductBrandAgg;
 using ShopManagment.Domain.StandardAgg;
 using ShopManagment.Domain.UnitAgg;
 using System.Drawing;
@@ -25,6 +26,9 @@ namespace ShopManagment.Domain.ProductAgg
 
         public long UnitId { get; set; }
         public Unit Unit { get; set; }
+
+        public ICollection<ProductBrand> ProductBrands { get; set; } = new List<ProductBrand>();
+
 
         public Product(string code, string name, string description, string size, decimal weight,
             string picture, string pictureAlt, string pictureTitle, long categoryId, long standardId, long unitId)

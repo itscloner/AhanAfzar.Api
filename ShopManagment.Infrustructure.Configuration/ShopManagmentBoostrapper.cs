@@ -13,6 +13,8 @@ using ShopManagment.Domain.StandardAgg;
 using ShopManagment.Domain.UnitAgg;
 using ShopManagment.Infrustructure.EfCore;
 using ShopManagment.Infrustructure.EfCore.Repository;
+using ShopManagment.Application.Contracts.ProductBrand;
+using ShopManagment.Domain.ProductBrandAgg;
 
 namespace ShopManagment.Infrustructure.Configuration
 {
@@ -34,6 +36,10 @@ namespace ShopManagment.Infrustructure.Configuration
 
             services.AddTransient<IProductApplication, ProductApplication>();
             services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddTransient<IProductBrandApplication, ProductBrandApplication>();
+            services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
+
 
             services.AddDbContext<ShopManagmentContext>(x => x.UseSqlServer(connectionString));
 
