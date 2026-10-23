@@ -9,7 +9,14 @@ namespace ShopManagment.Infrustructure.EfCore.Mapping
         public void Configure(EntityTypeBuilder<ProductBrand> builder)
         {
             builder.ToTable("ProductBrands");
-            builder.HasKey(x => new { x.ProductId, x.BrandId });
+            builder.HasKey(x => x.Id);
+
+            builder.HasIndex(x => new
+            {
+                x.ProductId,
+                x.BrandId
+            }).IsUnique();
+            
             builder.Property(x => x.ProductId).IsRequired();
             builder.Property(x => x.BrandId).IsRequired();
 
