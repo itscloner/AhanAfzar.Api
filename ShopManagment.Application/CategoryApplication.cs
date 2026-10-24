@@ -6,25 +6,25 @@ namespace ShopManagment.Application
 {
     public class CategoryApplication : ICategoryApplication
     {
-        private readonly ICategoryRepository _productCategoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryApplication(ICategoryRepository productCategoryRepository)
+        public CategoryApplication(ICategoryRepository categoryRepository)
         {
-            _productCategoryRepository = productCategoryRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public OperationResult Create(CreateCategory command)
         {
             var operation = new OperationResult();
-            if (_productCategoryRepository.Exist(x => x.Name == command.Name))
+            if (_categoryRepository.Exist(x => x.Name == command.Name))
                 return operation.Failed("امکان ثبت رکورد جدید وجود ندارد.");
 
-            var productCategory = new Category(command.Name, command.Description, command.Picture,
+            var category = new Category(command.Name, command.Description, command.Picture,
                 command.PictureAlt, command.PictureTitle, command.Keyword,
                 command.MetaDescription, command.Slug);
 
-            _productCategoryRepository.Create(productCategory);
-            _productCategoryRepository.SaveChanges();
+            _categoryRepository.Create(category);
+            _categoryRepository.SaveChanges();
 
             return operation.Succedded();
 
@@ -33,13 +33,13 @@ namespace ShopManagment.Application
         public OperationResult Delete(long id)
         {
             var operation = new OperationResult();
-            var productCategory = _productCategoryRepository.Get(id);
+            var category = _categoryRepository.Get(id);
 
-            if (productCategory == null)
+            if (category == null)
                 return operation.Failed("رکورد با مشخصات درخواستی یافت نشد");
 
-            productCategory.IsDeleted = true;
-            _productCategoryRepository.SaveChanges();
+            category.IsDeleted = true;
+            _categoryRepository.SaveChanges();
 
             return operation.Succedded();
         }
@@ -47,46 +47,40 @@ namespace ShopManagment.Application
         public OperationResult Edit(EditCategory command)
         {
             var operation = new OperationResult();
-            var productCategory = _productCategoryRepository.Get(command.Id);
+            var category = _categoryRepository.Get(command.Id);
 
-            if (productCategory == null)
+            if (category == null)
                 return operation.Failed("رکورد با مشخصات درخواستی یافت نشد");
 
-            if (_productCategoryRepository.Exist(x => x.Name == command.Name && x.Id != command.Id))
+            if (_categoryRepository.Exist(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed("امکان ثبت رکورد جدید وجود ندارد.");
 
-            productCategory.Edit(command.Name, command.Description, command.Picture,
+            category.Edit(command.Name, command.Description, command.Picture,
                 command.PictureAlt, command.PictureTitle, command.Keyword,
                 command.MetaDescription, command.Slug);
 
-            _productCategoryRepository.SaveChanges();
+            _categoryRepository.SaveChanges();
 
             return operation.Succedded();
         }
 
         public CategoryViewModel GetBy(long id)
         {
-            return _productCategoryRepository.GetBy(id);
+            return _categoryRepository.GetBy(id);
         }
 
         public EditCategory GetDetails(long id)
         {
-            return _productCategoryRepository.GetDetails(id);
+            return _categoryRepository.GetDetails(id);
         }
-
-        public CategoryViewModel GetProductCategory(long id)
-        {
-            return _productCategoryRepository.GetCategory(id);   
-        }
-
         public List<CategoryViewModel> List()
         {
-            return _productCategoryRepository.GetCategories();
+            return _categoryRepository.GetCategories();
         }
 
         public List<CategoryViewModel> Search(SearchCategory name)
         {
-            return _productCategoryRepository.Search(name.Name);
+            return _categoryRepository.Search(name.Name);
         }
 
     }

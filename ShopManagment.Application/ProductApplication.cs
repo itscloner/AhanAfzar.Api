@@ -19,11 +19,11 @@ namespace ShopManagment.Application
             if (_productRepository.Exist(x => x.Name == command.Name))
                 return operation.Failed("امکان ثبت رکورد جدید وجود ندارد.");
 
-            var productCategory = new Product(command.Code, command.Name, command.Description,
+            var category = new Product(command.Code, command.Name, command.Description,
                 command.Size, command.Weight, command.Picture,
-                command.PictureAlt, command.PictureTitle, command.ProductCategoryId, command.ProductStandardId, command.ProductUnitId);
+                command.PictureAlt, command.PictureTitle, command.CategoryId, command.StandardId, command.UnitId);
 
-            _productRepository.Create(productCategory);
+            _productRepository.Create(category);
             _productRepository.SaveChanges();
 
             return operation.Succedded();
@@ -56,7 +56,7 @@ namespace ShopManagment.Application
 
             product.Edit(command.Code, command.Name, command.Description,
                 command.Size, command.Weight, command.Picture,
-                command.PictureAlt, command.PictureTitle, command.ProductCategoryId, command.ProductStandardId, command.ProductUnitId);
+                command.PictureAlt, command.PictureTitle, command.CategoryId, command.StandardId, command.UnitId);
 
             _productRepository.SaveChanges();
 

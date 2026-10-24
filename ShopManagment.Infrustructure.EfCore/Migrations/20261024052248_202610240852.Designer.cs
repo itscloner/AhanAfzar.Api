@@ -12,8 +12,8 @@ using ShopManagment.Infrustructure.EfCore;
 namespace ShopManagment.Infrustructure.EfCore.Migrations
 {
     [DbContext(typeof(ShopManagmentContext))]
-    [Migration("20261023150254_202610232000")]
-    partial class _202610232000
+    [Migration("20261024052248_202610240852")]
+    partial class _202610240852
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

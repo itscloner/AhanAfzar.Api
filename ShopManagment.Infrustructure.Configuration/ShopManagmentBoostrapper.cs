@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagment.Application;
-using ShopManagment.Application.Contracts.Product;
 using ShopManagment.Application.Contracts.Brand;
 using ShopManagment.Application.Contracts.Category;
+using ShopManagment.Application.Contracts.Company;
+using ShopManagment.Application.Contracts.Product;
+using ShopManagment.Application.Contracts.ProductBrand;
 using ShopManagment.Application.Contracts.Standard;
 using ShopManagment.Application.Contracts.Unit;
-using ShopManagment.Domain.ProductAgg;
 using ShopManagment.Domain.BrandAgg;
 using ShopManagment.Domain.CategoryAgg;
+using ShopManagment.Domain.CompanyAgg;
+using ShopManagment.Domain.ProductAgg;
+using ShopManagment.Domain.ProductBrandAgg;
 using ShopManagment.Domain.StandardAgg;
 using ShopManagment.Domain.UnitAgg;
 using ShopManagment.Infrustructure.EfCore;
 using ShopManagment.Infrustructure.EfCore.Repository;
-using ShopManagment.Application.Contracts.ProductBrand;
-using ShopManagment.Domain.ProductBrandAgg;
 
 namespace ShopManagment.Infrustructure.Configuration
 {
@@ -39,6 +41,9 @@ namespace ShopManagment.Infrustructure.Configuration
 
             services.AddTransient<IProductBrandApplication, ProductBrandApplication>();
             services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
+
+            services.AddTransient<ICompanyApplication, CompanyApplication>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
 
 
             services.AddDbContext<ShopManagmentContext>(x => x.UseSqlServer(connectionString));

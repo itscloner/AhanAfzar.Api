@@ -6,24 +6,24 @@ namespace ShopManagment.Application
 {
     public class StandardApplication : IStandardApplication
     {
-        private readonly IStandardRepository _productStandardRepository;
+        private readonly IStandardRepository _standardRepository;
 
-        public StandardApplication(IStandardRepository productStandardRepository)
+        public StandardApplication(IStandardRepository standardRepository)
         {
-            _productStandardRepository = productStandardRepository;
+            _standardRepository = standardRepository;
         }
 
         public OperationResult Create(CreateStandard command)
         {
             var operation = new OperationResult();
-            if (_productStandardRepository.Exist(x => x.Name == command.Name))
+            if (_standardRepository.Exist(x => x.Name == command.Name))
                 return operation.Failed("امکان ثبت رکورد جدید وجود ندارد.");
 
-            var productStandard = new Standard(command.Name, command.Description,  command.Keyword,
+            var standard = new Standard(command.Name, command.Description,  command.Keyword,
                 command.MetaDescription, command.Slug);
 
-            _productStandardRepository.Create(productStandard);
-            _productStandardRepository.SaveChanges();
+            _standardRepository.Create(standard);
+            _standardRepository.SaveChanges();
 
             return operation.Succedded();
 
@@ -32,13 +32,13 @@ namespace ShopManagment.Application
         public OperationResult Delete(long id)
         {
             var operation = new OperationResult();
-            var productStandard = _productStandardRepository.Get(id);
+            var standard = _standardRepository.Get(id);
 
-            if (productStandard == null)
+            if (standard == null)
                 return operation.Failed("رکورد با مشخصات درخواستی یافت نشد");
 
-            productStandard.IsDeleted = true;
-            _productStandardRepository.SaveChanges();
+            standard.IsDeleted = true;
+            _standardRepository.SaveChanges();
 
             return operation.Succedded();
         }
@@ -46,45 +46,40 @@ namespace ShopManagment.Application
         public OperationResult Edit(EditStandard command)
         {
             var operation = new OperationResult();
-            var productStandard = _productStandardRepository.Get(command.Id);
+            var standard = _standardRepository.Get(command.Id);
 
-            if (productStandard == null)
+            if (standard == null)
                 return operation.Failed("رکورد با مشخصات درخواستی یافت نشد");
 
-            if (_productStandardRepository.Exist(x => x.Name == command.Name && x.Id != command.Id))
+            if (_standardRepository.Exist(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed("امکان ثبت رکورد جدید وجود ندارد.");
 
-            productStandard.Edit(command.Name, command.Description,  command.Keyword,
+            standard.Edit(command.Name, command.Description,  command.Keyword,
                 command.MetaDescription, command.Slug);
 
-            _productStandardRepository.SaveChanges();
+            _standardRepository.SaveChanges();
 
             return operation.Succedded();
         }
 
         public StandardViewModel GetBy(long id)
         {
-            return _productStandardRepository.GetBy(id);
+            return _standardRepository.GetBy(id);
         }
 
         public EditStandard GetDetails(long id)
         {
-            return _productStandardRepository.GetDetails(id);
-        }
-
-        public StandardViewModel GetProductStandard(long id)
-        {
-            return _productStandardRepository.GetBy(id);
+            return _standardRepository.GetDetails(id);
         }
 
         public List<StandardViewModel> List()
         {
-            return _productStandardRepository.List();
+            return _standardRepository.List();
         }
 
         public List<StandardViewModel> Search(SearchStandard name)
         {
-            return _productStandardRepository.Search(name.Name);
+            return _standardRepository.Search(name.Name);
         }
 
     }

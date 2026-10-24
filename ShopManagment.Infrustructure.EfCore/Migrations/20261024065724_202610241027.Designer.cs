@@ -12,8 +12,8 @@ using ShopManagment.Infrustructure.EfCore;
 namespace ShopManagment.Infrustructure.EfCore.Migrations
 {
     [DbContext(typeof(ShopManagmentContext))]
-    [Migration("20261023145457_202610231954")]
-    partial class _202610231954
+    [Migration("20261024065724_202610241027")]
+    partial class _202610241027
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,42 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("Categories", (string)null);
                 });
 
+            modelBuilder.Entity("ShopManagment.Domain.CompanyAgg.Company", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("BrandName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EconomicCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies", (string)null);
+                });
+
             modelBuilder.Entity("ShopManagment.Domain.ProductAgg.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -182,8 +218,11 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
 
             modelBuilder.Entity("ShopManagment.Domain.ProductBrandAgg.ProductBrand", b =>
                 {
-                    b.Property<long>("ProductId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<long>("BrandId")
                         .HasColumnType("bigint");
@@ -191,15 +230,18 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.HasKey("ProductId", "BrandId");
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("ProductId", "BrandId")
+                        .IsUnique();
 
                     b.ToTable("ProductBrands", (string)null);
                 });
