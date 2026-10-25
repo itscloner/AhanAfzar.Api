@@ -1,4 +1,6 @@
-﻿using CustomerManagment.Domain.CompanyAgg;
+﻿using CustomerManagment.Domain.CityAgg;
+using CustomerManagment.Domain.CompanyAgg;
+using CustomerManagment.Domain.ProvinceAgg;
 using CustomerManagment.Infrustructure.EfCore.Mapping;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +9,8 @@ namespace CustomerManagment.Infrustructure.EfCore
     public class CustomerManagmentContext : DbContext 
     {
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<City> Cities { get; set; }
         public CustomerManagmentContext(DbContextOptions<CustomerManagmentContext> options) : base(options)
         {
         }
@@ -14,6 +18,8 @@ namespace CustomerManagment.Infrustructure.EfCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CompanyMapping());
+            modelBuilder.ApplyConfiguration(new ProvinceMapping());
+            modelBuilder.ApplyConfiguration(new CityMapping());
 
             base.OnModelCreating(modelBuilder);
         }

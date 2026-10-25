@@ -5,6 +5,10 @@ using CustomerManagment.Application.Contracts.Company;
 using CustomerManagment.Domain.CompanyAgg;
 using CustomerManagment.Infrustructure.EfCore.Repository;
 using CustomerManagment.Infrustructure.EfCore;
+using CustomerManagment.Application.Contracts.Province;
+using CustomerManagment.Domain.ProvinceAgg;
+using CustomerManagment.Application.Contracts.City;
+using CustomerManagment.Domain.CityAgg;
 
 namespace CustomerManagment.Infrustructure.Configuration
 {
@@ -15,6 +19,12 @@ namespace CustomerManagment.Infrustructure.Configuration
 
             services.AddTransient<ICompanyApplication, CompanyApplication>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+
+            services.AddTransient<IProvinceApplication, ProvinceApplication>();
+            services.AddTransient<IProvinceRepository, ProvinceRepository>();
+            
+            services.AddTransient<ICityApplication, CityApplication>();
+            services.AddTransient<ICityRepository, CityRepository>();
 
 
             services.AddDbContext<CustomerManagmentContext>(x => x.UseSqlServer(connectionString));
