@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using ShopManagment.Application.Contracts.Company;
+using CustomerManagment.Application.Contracts.Company;
 
-namespace ShopManagment.Domain.CompanyAgg
+namespace CustomerManagment.Domain.CompanyAgg
 {
     public interface ICompanyRepository : IRepository<long, Company>
     {

@@ -1,6 +1,7 @@
-﻿using _0_Framework.Domain;
+﻿
+using _0_Framework.Domain;
 
-namespace ShopManagment.Domain.CompanyAgg
+namespace CustomerManagment.Domain.CompanyAgg
 {
     public class Company : EntityBase<long>
     {

@@ -1,8 +1,9 @@
 ﻿using _0_Framework.Application;
-using ShopManagment.Application.Contracts.Company;
-using ShopManagment.Domain.CompanyAgg;
 
-namespace ShopManagment.Application
+using CustomerManagment.Application.Contracts.Company;
+using CustomerManagment.Domain.CompanyAgg;
+
+namespace CustomerManagment.Application
 {
     public class CompanyApplication : ICompanyApplication
     {

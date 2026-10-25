@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerManagment.Application.Contracts\CustomerManagment.Application.Contracts.csproj" />
+    <ProjectReference Include="..\CustomerManagment.Domain\CustomerManagment.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

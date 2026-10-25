@@ -1,14 +1,14 @@
 ﻿using _0_Framework.Infrastructure;
-using ShopManagment.Application.Contracts.Company;
-using ShopManagment.Domain.CompanyAgg;
+using CustomerManagment.Application.Contracts.Company;
+using CustomerManagment.Domain.CompanyAgg;
 
-namespace ShopManagment.Infrustructure.EfCore.Repository
+namespace CustomerManagment.Infrustructure.EfCore.Repository
 {
     public class CompanyRepository : ReposioryBase<long, Company>, ICompanyRepository
     {
-        private readonly ShopManagmentContext _context;
+        private readonly CustomerManagmentContext _context;
 
-        public CompanyRepository(ShopManagmentContext context) : base(context)
+        public CompanyRepository(CustomerManagmentContext context) : base(context)
         {
             _context = context;
         }

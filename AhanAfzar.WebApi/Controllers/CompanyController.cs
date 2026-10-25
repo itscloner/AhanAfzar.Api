@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagment.Application.Contracts.Company;
+using CustomerManagment.Application.Contracts.Company;
 
 namespace AhanAfzar.WebApi.Controllers
 {

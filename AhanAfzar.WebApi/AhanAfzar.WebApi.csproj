@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CustomerManagment.Infrustructure.Configuration\CustomerManagment.Infrustructure.Configuration.csproj" />
     <ProjectReference Include="..\ShopManagment.Infrustructure.Configuration\ShopManagment.Infrustructure.Configuration.csproj" />
   </ItemGroup>
 	<PropertyGroup>

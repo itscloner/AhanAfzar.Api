@@ -1,6 +1,7 @@
-﻿using _0_Framework.Application;
+﻿
+using _0_Framework.Application;
 
-namespace ShopManagment.Application.Contracts.Company
+namespace CustomerManagment.Application.Contracts.Company
 {
     public interface ICompanyApplication
     {

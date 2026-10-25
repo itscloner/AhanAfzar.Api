@@ -1,4 +1,4 @@
-﻿namespace ShopManagment.Application.Contracts.Company
+﻿namespace CustomerManagment.Application.Contracts.Company
 {
     public class SearchCompanyModel
     {

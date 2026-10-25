@@ -1,4 +1,5 @@
-    using Microsoft.OpenApi.Models;
+using CustomerManagment.Infrustructure.Configuration;
+using Microsoft.OpenApi.Models;
     using ShopManagment.Infrustructure.Configuration;
     using System.Reflection;
 
@@ -7,6 +8,7 @@
 
     // Add services to the container.
     ShopManagmentBoostrapper.Configure(builder.Services, connectionString);
+    CustomerManagmentBoostrapper.Configure(builder.Services, connectionString);
 
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

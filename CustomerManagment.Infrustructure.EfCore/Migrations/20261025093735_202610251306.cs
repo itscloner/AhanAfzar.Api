@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ShopManagment.Infrustructure.EfCore.Migrations
+namespace CustomerManagment.Infrustructure.EfCore.Migrations
 {
     /// <inheritdoc />
-    public partial class _202610241027 : Migration
+    public partial class _202610251306 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

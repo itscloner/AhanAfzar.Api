@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagment.Domain.CompanyAgg;
+using CustomerManagment.Domain.CompanyAgg;
 
-namespace ShopManagment.Infrustructure.EfCore.Mapping
+namespace CustomerManagment.Infrustructure.EfCore.Mapping
 {
     public class CompanyMapping : IEntityTypeConfiguration<Company>
     {
