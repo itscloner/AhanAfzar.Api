@@ -127,6 +127,33 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("Companies", (string)null);
                 });
 
+            modelBuilder.Entity("CustomerManagment.Domain.ContactAgg.Contact", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts", (string)null);
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.ProvinceAgg.Province", b =>
                 {
                     b.Property<long>("Id")
