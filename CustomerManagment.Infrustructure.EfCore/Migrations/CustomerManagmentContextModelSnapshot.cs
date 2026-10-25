@@ -22,6 +22,47 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CustomerManagment.Domain.AddressAgg.Address", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ProvinceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Addresses", (string)null);
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.CityAgg.City", b =>
                 {
                     b.Property<long>("Id")
@@ -113,6 +154,25 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("Provinces", (string)null);
                 });
 
+            modelBuilder.Entity("CustomerManagment.Domain.AddressAgg.Address", b =>
+                {
+                    b.HasOne("CustomerManagment.Domain.CityAgg.City", "City")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CustomerManagment.Domain.ProvinceAgg.Province", "Province")
+                        .WithMany("Addresses")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Province");
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.CityAgg.City", b =>
                 {
                     b.HasOne("CustomerManagment.Domain.ProvinceAgg.Province", "Province")
@@ -124,8 +184,15 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
                     b.Navigation("Province");
                 });
 
+            modelBuilder.Entity("CustomerManagment.Domain.CityAgg.City", b =>
+                {
+                    b.Navigation("Addresses");
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.ProvinceAgg.Province", b =>
                 {
+                    b.Navigation("Addresses");
+
                     b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618

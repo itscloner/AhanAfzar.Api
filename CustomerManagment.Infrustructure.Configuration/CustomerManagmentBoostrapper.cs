@@ -9,6 +9,8 @@ using CustomerManagment.Application.Contracts.Province;
 using CustomerManagment.Domain.ProvinceAgg;
 using CustomerManagment.Application.Contracts.City;
 using CustomerManagment.Domain.CityAgg;
+using CustomerManagment.Application.Contracts.Address;
+using CustomerManagment.Domain.AddressAgg;
 
 namespace CustomerManagment.Infrustructure.Configuration
 {
@@ -25,6 +27,9 @@ namespace CustomerManagment.Infrustructure.Configuration
             
             services.AddTransient<ICityApplication, CityApplication>();
             services.AddTransient<ICityRepository, CityRepository>();
+
+            services.AddTransient<IAddressApplication, AddressApplication>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
 
 
             services.AddDbContext<CustomerManagmentContext>(x => x.UseSqlServer(connectionString));
