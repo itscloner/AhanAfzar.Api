@@ -14,8 +14,19 @@ namespace CustomerManagment.Infrustructure.EfCore.Mapping
             builder.Property(x => x.FirstName);
             builder.Property(x => x.LastName);
             builder.Property(x => x.NationalCode);
-            builder.Property(x => x.ProvinceId);
-            builder.Property(x => x.CityId);
+            builder.Property(x => x.CustomerType);
+
+            builder.HasMany(x => x.CustomerCompanies)
+                .WithOne(x => x.Customer)
+                .HasForeignKey(x => x.CustomerId);
+
+            builder.HasMany(x => x.CustomerContacts)
+                .WithOne(x => x.Customer)
+                .HasForeignKey(x => x.ContactId);
+
+            builder.HasMany(x => x.CustomerAddresses)
+                .WithOne(x => x.Customer)
+                .HasForeignKey(x => x.AddressId);
 
         }
     }

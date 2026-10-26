@@ -2,6 +2,10 @@
 using CustomerManagment.Domain.CityAgg;
 using CustomerManagment.Domain.CompanyAgg;
 using CustomerManagment.Domain.ContactAgg;
+using CustomerManagment.Domain.CusromerAddressAgg;
+using CustomerManagment.Domain.CusromerCompanyAgg;
+using CustomerManagment.Domain.CusromerContactAgg;
+using CustomerManagment.Domain.CustomerAgg;
 using CustomerManagment.Domain.ProvinceAgg;
 using CustomerManagment.Infrustructure.EfCore.Mapping;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +19,10 @@ namespace CustomerManagment.Infrustructure.EfCore
         public DbSet<City> Cities { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<CustomerCompany> CustomerCompany { get; set; }
+        public DbSet<CustomerContact> CustomerContact { get; set; }
+        public DbSet<CustomerAddress> CustomerAddress { get; set; }
         public CustomerManagmentContext(DbContextOptions<CustomerManagmentContext> options) : base(options)
         {
         }
@@ -26,6 +34,10 @@ namespace CustomerManagment.Infrustructure.EfCore
             modelBuilder.ApplyConfiguration(new CityMapping());
             modelBuilder.ApplyConfiguration(new AddressMapping());
             modelBuilder.ApplyConfiguration(new ContactMapping());
+            modelBuilder.ApplyConfiguration(new CustomerMapping());
+            modelBuilder.ApplyConfiguration(new CustomerAddressMapping());
+            modelBuilder.ApplyConfiguration(new CustomerCompanyMapping());
+            modelBuilder.ApplyConfiguration(new CustomerCompanyMapping());
 
             base.OnModelCreating(modelBuilder);
         }

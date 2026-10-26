@@ -1,5 +1,6 @@
 ﻿
 using _0_Framework.Domain;
+using CustomerManagment.Domain.CusromerCompanyAgg;
 using CustomerManagment.Domain.CustomerAgg;
 
 namespace CustomerManagment.Domain.CompanyAgg
@@ -11,6 +12,8 @@ namespace CustomerManagment.Domain.CompanyAgg
         public string? NationalId { get; set; } // شناسه ملی
         public string? EconomicCode { get; set; } // کد اقتصادی
         public string Description { get; set; }
+        public ICollection<CustomerCompany> CustomerCompanies { get; set; } = new List<CustomerCompany>();
+
 
         public Company(string name, string? brandName, string? nationalId, string? economicCode, string description)
         {

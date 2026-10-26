@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using CustomerManagment.Domain.CityAgg;
+using CustomerManagment.Domain.CusromerAddressAgg;
 using CustomerManagment.Domain.ProvinceAgg;
 
 namespace CustomerManagment.Domain.AddressAgg
@@ -13,6 +14,7 @@ namespace CustomerManagment.Domain.AddressAgg
         public Province Province { get; set; }
         public long CityId { get; set; }
         public City City { get; set; }
+        public ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
 
         public Address(string title, string fullAddress, string postalCode, long provinceId, long cityId)
         {

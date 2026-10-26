@@ -1,12 +1,7 @@
 ﻿using _0_Framework.Domain;
-using CustomerManagment.Domain.AddressAgg;
-using CustomerManagment.Domain.CityAgg;
-using CustomerManagment.Domain.CompanyAgg;
-using CustomerManagment.Domain.ContactAgg;
 using CustomerManagment.Domain.CusromerAddressAgg;
 using CustomerManagment.Domain.CusromerCompanyAgg;
 using CustomerManagment.Domain.CusromerContactAgg;
-using CustomerManagment.Domain.ProvinceAgg;
 
 namespace CustomerManagment.Domain.CustomerAgg
 {

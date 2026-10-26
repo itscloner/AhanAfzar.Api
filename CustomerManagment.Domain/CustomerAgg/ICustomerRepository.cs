@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using CustomerManagment.Application.Contracts.Customer;
 
 namespace CustomerManagment.Domain.CustomerAgg
 {

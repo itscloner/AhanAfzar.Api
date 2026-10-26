@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using CustomerManagment.Domain.CusromerContactAgg;
 
 namespace CustomerManagment.Domain.ContactAgg
 {
@@ -6,6 +7,7 @@ namespace CustomerManagment.Domain.ContactAgg
     {
         public string Title { get; set; }
         public string Phone { get; set; }
+        public ICollection<CustomerContact> CustomerContacts { get; set; } = new List<CustomerContact>();
 
         public Contact(string title, string phone)
         {

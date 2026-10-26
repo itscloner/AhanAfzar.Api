@@ -1,4 +1,5 @@
-﻿using CustomerManagment.Application.Contracts.Province;
+﻿using _0_Framework.Domain;
+using CustomerManagment.Application.Contracts.Province;
 
 namespace CustomerManagment.Application.Contracts.Customer
 {
@@ -8,7 +9,7 @@ namespace CustomerManagment.Application.Contracts.Customer
         public string LastName { get; set; }
         public string Description { get; set; }
         public string NationalCode { get; set; }
-        public int CustomerType { get; set; }
+        public CustomerType CustomerType { get; set; }
 
     }
 }
