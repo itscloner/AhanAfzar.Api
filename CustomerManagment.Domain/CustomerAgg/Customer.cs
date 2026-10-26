@@ -3,6 +3,9 @@ using CustomerManagment.Domain.AddressAgg;
 using CustomerManagment.Domain.CityAgg;
 using CustomerManagment.Domain.CompanyAgg;
 using CustomerManagment.Domain.ContactAgg;
+using CustomerManagment.Domain.CusromerAddressAgg;
+using CustomerManagment.Domain.CusromerCompanyAgg;
+using CustomerManagment.Domain.CusromerContactAgg;
 using CustomerManagment.Domain.ProvinceAgg;
 
 namespace CustomerManagment.Domain.CustomerAgg
@@ -13,35 +16,30 @@ namespace CustomerManagment.Domain.CustomerAgg
         public string LastName { get; set; }
         public string Description { get; set; }
         public string NationalCode { get; set; }
-        public long ProvinceId { get; set; }
-        public Province Province { get; set; }
-        public long CityId { get; set; }
-        public City City { get; set; }
+        public CustomerType CustomerType { get; set; }
 
-        public ICollection<Company> Companies { get; set; } = new List<Company>();
-        public ICollection<Address> Addresses { get; set; } = new List<Address>();
-        public ICollection<Contact> Contacts { get; set; } = new List<Contact>();
+        public ICollection<CustomerCompany> CustomerCompanies { get; set; } = new List<CustomerCompany>();
+        public ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
+        public ICollection<CustomerContact> CustomerContacts { get; set; } = new List<CustomerContact>();
 
         public Customer(string firstName, string lastName, string description, 
-            string nationalCode, long provinceId, long cityId)
+            string nationalCode, CustomerType customerType)
         {
             FirstName = firstName;
             LastName = lastName;
             Description = description;
             NationalCode = nationalCode;
-            ProvinceId = provinceId;
-            CityId = cityId;
+            CustomerType = customerType;
         }
 
         public void Edit(string firstName, string lastName, string description,
-            string nationalCode, long provinceId, long cityId)
+            string nationalCode, CustomerType customerType)
         {
             FirstName = firstName;
             LastName = lastName;
             Description = description;
             NationalCode = nationalCode;
-            ProvinceId = provinceId;
-            CityId = cityId;
+            CustomerType = customerType;
         }
     }
 }

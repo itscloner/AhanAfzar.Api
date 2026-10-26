@@ -8,8 +8,7 @@ namespace CustomerManagment.Application.Contracts.Customer
         public string LastName { get; set; }
         public string Description { get; set; }
         public string NationalCode { get; set; }
-        public long ProvinceId { get; set; }
-        public long CityId { get; set; }
+        public int CustomerType { get; set; }
 
     }
 }

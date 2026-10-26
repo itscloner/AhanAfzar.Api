@@ -24,7 +24,7 @@ namespace CustomerManagment.Application
             if (isExistCustomer) return operation.Failed("مشتری با این اطلاعات قبلا ثبت شده است");
 
             var customer = new Customer(command.FirstName, command.LastName, command.Description,
-                command.NationalCode, command.ProvinceId, command.CityId);
+                command.NationalCode, command.CustomerType);
 
             _customerRepository.Create(customer);
             _customerRepository.SaveChanges();
@@ -52,7 +52,7 @@ namespace CustomerManagment.Application
             if (customer == null) return operation.Failed("رکورد یافت نشد");
 
             customer.Edit(command.FirstName, command.LastName, command.Description,
-                command.NationalCode, command.ProvinceId, command.CityId);
+                command.NationalCode, command.CustomerType);
 
             _customerRepository.SaveChanges();
 
