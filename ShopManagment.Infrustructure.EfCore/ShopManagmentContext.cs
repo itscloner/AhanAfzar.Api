@@ -6,6 +6,7 @@ using ShopManagment.Domain.StandardAgg;
 using ShopManagment.Domain.UnitAgg;
 using ShopManagment.Infrustructure.EfCore.Mapping;
 using ShopManagment.Domain.ProductBrandAgg;
+using ShopManagment.Domain.ServicePackageAgg;
 
 namespace ShopManagment.Infrustructure.EfCore
 {
@@ -17,6 +18,7 @@ namespace ShopManagment.Infrustructure.EfCore
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ServicePackage> ServicePackages { get; set; }
         public ShopManagmentContext(DbContextOptions<ShopManagmentContext> options) : base(options)
         {
         }
@@ -29,6 +31,7 @@ namespace ShopManagment.Infrustructure.EfCore
             modelBuilder.ApplyConfiguration(new BrandMapping());
             modelBuilder.ApplyConfiguration(new ProductMapping());
             modelBuilder.ApplyConfiguration(new ProductBrandMapping());
+            modelBuilder.ApplyConfiguration(new ServicePackageMapping());
 
             base.OnModelCreating(modelBuilder);
         }

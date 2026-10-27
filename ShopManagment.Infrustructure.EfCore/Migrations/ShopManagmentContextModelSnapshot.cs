@@ -207,6 +207,36 @@ namespace ShopManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("ProductBrands", (string)null);
                 });
 
+            modelBuilder.Entity("ShopManagment.Domain.ServicePackageAgg.ServicePackage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServicePackage", (string)null);
+                });
+
             modelBuilder.Entity("ShopManagment.Domain.StandardAgg.Standard", b =>
                 {
                     b.Property<long>("Id")

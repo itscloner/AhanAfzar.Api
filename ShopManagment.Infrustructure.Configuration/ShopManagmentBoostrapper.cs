@@ -5,12 +5,14 @@ using ShopManagment.Application.Contracts.Brand;
 using ShopManagment.Application.Contracts.Category;
 using ShopManagment.Application.Contracts.Product;
 using ShopManagment.Application.Contracts.ProductBrand;
+using ShopManagment.Application.Contracts.ServicePackage;
 using ShopManagment.Application.Contracts.Standard;
 using ShopManagment.Application.Contracts.Unit;
 using ShopManagment.Domain.BrandAgg;
 using ShopManagment.Domain.CategoryAgg;
 using ShopManagment.Domain.ProductAgg;
 using ShopManagment.Domain.ProductBrandAgg;
+using ShopManagment.Domain.ServicePackageAgg;
 using ShopManagment.Domain.StandardAgg;
 using ShopManagment.Domain.UnitAgg;
 using ShopManagment.Infrustructure.EfCore;
@@ -39,6 +41,10 @@ namespace ShopManagment.Infrustructure.Configuration
 
             services.AddTransient<IProductBrandApplication, ProductBrandApplication>();
             services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
+
+            services.AddTransient<IServicePackageApplication, ServicePackageApplication>();
+            services.AddTransient<IServicePackageRepository, ServicePackageRepository>();
+
 
             services.AddDbContext<ShopManagmentContext>(x => x.UseSqlServer(connectionString));
 
