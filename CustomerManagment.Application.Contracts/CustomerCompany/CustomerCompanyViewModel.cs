@@ -5,6 +5,7 @@ namespace CustomerManagment.Application.Contracts.CustomerCompany
 {
     public class CustomerCompanyViewModel
     {
+        public long Id { get; set; }
         public long CustomerId { get; set; }
         public long CompanyId { get; set; }
         public CustomerViewModel Customer { get; set; }

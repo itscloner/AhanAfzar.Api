@@ -154,6 +154,136 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
                     b.ToTable("Contacts", (string)null);
                 });
 
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerAddressAgg.CustomerAddress", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CustomerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("CustomerId", "AddressId")
+                        .IsUnique();
+
+                    b.ToTable("CustomerAddress", (string)null);
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerCompanyAgg.CustomerCompany", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CustomerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CustomerId", "CompanyId")
+                        .IsUnique();
+
+                    b.ToTable("CustomerCompany", (string)null);
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerContactAgg.CustomerContact", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ContactId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ContactId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CustomerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId");
+
+                    b.HasIndex("ContactId1");
+
+                    b.ToTable("CustomerContact");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CustomerAgg.Customer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers", (string)null);
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.ProvinceAgg.Province", b =>
                 {
                     b.Property<long>("Id")
@@ -211,9 +341,90 @@ namespace CustomerManagment.Infrustructure.EfCore.Migrations
                     b.Navigation("Province");
                 });
 
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerAddressAgg.CustomerAddress", b =>
+                {
+                    b.HasOne("CustomerManagment.Domain.AddressAgg.Address", "Address")
+                        .WithMany("CustomerAddresses")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CustomerManagment.Domain.CustomerAgg.Customer", "Customer")
+                        .WithMany("CustomerAddresses")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerCompanyAgg.CustomerCompany", b =>
+                {
+                    b.HasOne("CustomerManagment.Domain.CompanyAgg.Company", "Company")
+                        .WithMany("CustomerCompanies")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CustomerManagment.Domain.CustomerAgg.Customer", "Customer")
+                        .WithMany("CustomerCompanies")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CusromerContactAgg.CustomerContact", b =>
+                {
+                    b.HasOne("CustomerManagment.Domain.CustomerAgg.Customer", "Customer")
+                        .WithMany("CustomerContacts")
+                        .HasForeignKey("ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CustomerManagment.Domain.ContactAgg.Contact", "Contact")
+                        .WithMany("CustomerContacts")
+                        .HasForeignKey("ContactId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contact");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.AddressAgg.Address", b =>
+                {
+                    b.Navigation("CustomerAddresses");
+                });
+
             modelBuilder.Entity("CustomerManagment.Domain.CityAgg.City", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CompanyAgg.Company", b =>
+                {
+                    b.Navigation("CustomerCompanies");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.ContactAgg.Contact", b =>
+                {
+                    b.Navigation("CustomerContacts");
+                });
+
+            modelBuilder.Entity("CustomerManagment.Domain.CustomerAgg.Customer", b =>
+                {
+                    b.Navigation("CustomerAddresses");
+
+                    b.Navigation("CustomerCompanies");
+
+                    b.Navigation("CustomerContacts");
                 });
 
             modelBuilder.Entity("CustomerManagment.Domain.ProvinceAgg.Province", b =>

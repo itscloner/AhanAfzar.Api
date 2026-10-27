@@ -12,8 +12,5 @@ namespace CustomerManagment.Application.Contracts.Customer
         public string Description { get; set; }
         public string NationalCode { get; set; }
         public string CustomerType { get; set; }
-        public List<CompanyViewModel> Companies { get; set; }
-        public List<AddressViewModel> Addresses { get; set; }
-        public List<ContactViewModel> Contacts { get; set; }
     }
 }

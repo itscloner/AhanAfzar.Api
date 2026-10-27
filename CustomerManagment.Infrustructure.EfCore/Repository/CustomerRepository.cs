@@ -20,9 +20,6 @@ namespace CustomerManagment.Infrustructure.EfCore.Repository
         public CustomerViewModel GetBy(long id)
         {
             return _context.Customer
-                .Include(x => x.CustomerCompanies)
-                .Include(x => x.CustomerAddresses)
-                .Include(x => x.CustomerContacts)
                 .Select(x => new CustomerViewModel
             {
                     Id = x.Id,
@@ -31,18 +28,21 @@ namespace CustomerManagment.Infrustructure.EfCore.Repository
                     NationalCode = x.NationalCode,
                     Description = x.Description, 
                     CustomerType = x.CustomerType == CustomerType.LEGAL ? "حقوقی" : "حقیقی",
-                    Companies = new CompanyViewModel 
-                    {
-                        Id = x.CustomerCompanies.
-                    },
-                    Addresses = new AddressViewModel { },
-                    Contacts = new ContactViewModel { }
             }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<CustomerViewModel> List()
         {
-            throw new NotImplementedException();
+            return _context.Customer
+                .Select(x => new CustomerViewModel
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    NationalCode = x.NationalCode,
+                    Description = x.Description,
+                    CustomerType = x.CustomerType == CustomerType.LEGAL ? "حقوقی" : "حقیقی",
+                }).ToList();
         }
     }
 }

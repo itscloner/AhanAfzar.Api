@@ -13,6 +13,14 @@ using CustomerManagment.Application.Contracts.Address;
 using CustomerManagment.Domain.AddressAgg;
 using CustomerManagment.Application.Contracts.Contact;
 using CustomerManagment.Domain.ContactAgg;
+using CustomerManagment.Application.Contracts.Customer;
+using CustomerManagment.Domain.CustomerAgg;
+using CustomerManagment.Application.Contracts.CustomerContact;
+using CustomerManagment.Domain.CusromerContactAgg;
+using CustomerManagment.Application.Contracts.CustomerAddress;
+using CustomerManagment.Domain.CusromerAddressAgg;
+using CustomerManagment.Application.Contracts.CustomerCompany;
+using CustomerManagment.Domain.CusromerCompanyAgg;
 
 namespace CustomerManagment.Infrustructure.Configuration
 {
@@ -36,6 +44,18 @@ namespace CustomerManagment.Infrustructure.Configuration
             services.AddTransient<IContactApplication, ContactApplication>();
             services.AddTransient<IContactRepository, ContactRepository>();
 
+
+            services.AddTransient<ICustomerApplication, CustomerApplication>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+
+            services.AddTransient<ICustomerContactApplication, CustomerContactApplication>();
+            services.AddTransient<ICustomerContactRepository, CustomerContactRepository>();
+
+            services.AddTransient<ICustomerAddressApplication, CustomerAddressApplication>();
+            services.AddTransient<ICustomerAddressRepository, CustomerAddressRepository>();
+
+            services.AddTransient<ICustomerCompanyApplication, CustomerCompanyApplication>();
+            services.AddTransient<ICustomerCompanyRepository, CustomerCompanyRepository>();
 
 
             services.AddDbContext<CustomerManagmentContext>(x => x.UseSqlServer(connectionString));
