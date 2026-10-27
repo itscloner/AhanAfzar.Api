@@ -6,13 +6,13 @@
         NATURAL = 2 // حقیقی
     }
 
-    public enum SaleOrderSource
+    public enum OrderSource
     {
         WEBSITE = 1, // سایت
         PHONE = 2 // ثبت تلفنی توسط کارشناس
     }
 
-    public enum SaleOrderStatus
+    public enum OrderStatus
     {
         Draft = 1,
         Registered = 2,
@@ -27,5 +27,11 @@
         AfterLoading = 1,
         AtDelivery = 2,
         Deferred = 3
+    }
+
+    public enum InvoiceType : byte
+    {
+        Informal = 1, // غیررسمی
+        Official = 2  // رسمی
     }
 }
