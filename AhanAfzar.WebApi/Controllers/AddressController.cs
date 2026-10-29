@@ -1,79 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CustomerManagment.Application.Contracts.Address;
+using CustomerManagment.Application.Contracts.Supplier;
 
 namespace AhanAfzar.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddressController : ControllerBase
+    public class SupplierController : ControllerBase
     {
-        private readonly IAddressApplication _AddressApplication;
+        private readonly ISupplierApplication _SupplierApplication;
 
-        public AddressController(IAddressApplication AddressApplication)
+        public SupplierController(ISupplierApplication SupplierApplication)
         {
-            _AddressApplication = AddressApplication;
+            _SupplierApplication = SupplierApplication;
         }
 
         /// <summary>
-        /// ایجاد آدرس
+        /// ایجاد تامین کننده
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult CreateAddress([FromBody] CreateAddress command)
+        public JsonResult CreateSupplier([FromBody] CreateSupplier command)
         {
-            var result = _AddressApplication.Create(command);
+            var result = _SupplierApplication.Create(command);
             return new JsonResult(result);
         }
 
         /// <summary>
-        /// لیست تمامی آدرس
+        /// لیست تمامی تامین کننده
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<AddressViewModel> GetAllAddress()
+        public List<SupplierViewModel> GetAllSupplier(SupplierSearchModel searchModel)
         {
-            return _AddressApplication.List();
+            return _SupplierApplication.Search(searchModel);
         }
         /// <summary>
-        /// دریافت جزئیات آدرس براساس ID
+        /// دریافت جزئیات تامین کننده براساس ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:long}")]
-        public AddressViewModel GetById([FromRoute] long id)
+        public SupplierViewModel GetById([FromRoute] long id)
         {
-            return _AddressApplication.GetBy(id);
+            return _SupplierApplication.GetBy(id);
         }
         /// <summary>
-        /// ایجاد آدرس
-        /// دریافت جزئیات آدرس براساس کد یونیک
+        /// ایجاد تامین کننده
+        /// دریافت جزئیات تامین کننده براساس کد یونیک
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("AddressDetail/{id:long}")]
-        public AddressViewModel GetAddressById(long id)
+        [HttpGet("SupplierDetail/{id:long}")]
+        public SupplierViewModel GetSupplierById(long id)
         {
-            return _AddressApplication.GetBy(id);
+            return _SupplierApplication.GetBy(id);
         }
         /// <summary>
-        /// ویرایش آدرس
+        /// ویرایش تامین کننده
         /// </summary>
         /// <param name="command"></param>
         [HttpPut("{id:long}")]
-        public JsonResult EditAddress([FromBody] EditAddress command)
+        public JsonResult EditSupplier([FromBody] EditSupplier command)
         {
-            var result = _AddressApplication.Edit(command);
+            var result = _SupplierApplication.Edit(command);
             return new JsonResult(result);
         }
         /// <summary>
-        /// حذف منطقی آدرس
+        /// حذف منطقی تامین کننده
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id:long}")]
-        public JsonResult DeleteAddress([FromRoute] long id)
+        public JsonResult DeleteSupplier([FromRoute] long id)
         {
-            var result = _AddressApplication.Delete(id);
+            var result = _SupplierApplication.Delete(id);
             return new JsonResult(result);
         }
 

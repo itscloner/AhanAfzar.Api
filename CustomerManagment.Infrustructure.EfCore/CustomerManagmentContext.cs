@@ -7,6 +7,7 @@ using CustomerManagment.Domain.CusromerCompanyAgg;
 using CustomerManagment.Domain.CusromerContactAgg;
 using CustomerManagment.Domain.CustomerAgg;
 using CustomerManagment.Domain.ProvinceAgg;
+using CustomerManagment.Domain.SupplierAgg;
 using CustomerManagment.Infrustructure.EfCore.Mapping;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,7 @@ namespace CustomerManagment.Infrustructure.EfCore
         public DbSet<CustomerCompany> CustomerCompany { get; set; }
         public DbSet<CustomerContact> CustomerContact { get; set; }
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         public CustomerManagmentContext(DbContextOptions<CustomerManagmentContext> options) : base(options)
         {
         }
@@ -38,6 +40,7 @@ namespace CustomerManagment.Infrustructure.EfCore
             modelBuilder.ApplyConfiguration(new CustomerAddressMapping());
             modelBuilder.ApplyConfiguration(new CustomerCompanyMapping());
             modelBuilder.ApplyConfiguration(new CustomerCompanyMapping());
+            modelBuilder.ApplyConfiguration(new SupplierMapping());
 
             base.OnModelCreating(modelBuilder);
         }

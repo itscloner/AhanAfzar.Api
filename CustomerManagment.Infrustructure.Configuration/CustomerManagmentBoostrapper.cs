@@ -21,6 +21,8 @@ using CustomerManagment.Application.Contracts.CustomerAddress;
 using CustomerManagment.Domain.CusromerAddressAgg;
 using CustomerManagment.Application.Contracts.CustomerCompany;
 using CustomerManagment.Domain.CusromerCompanyAgg;
+using CustomerManagment.Application.Contracts.Supplier;
+using CustomerManagment.Domain.SupplierAgg;
 
 namespace CustomerManagment.Infrustructure.Configuration
 {
@@ -56,6 +58,10 @@ namespace CustomerManagment.Infrustructure.Configuration
 
             services.AddTransient<ICustomerCompanyApplication, CustomerCompanyApplication>();
             services.AddTransient<ICustomerCompanyRepository, CustomerCompanyRepository>();
+
+            services.AddTransient<ISupplierApplication, SupplierApplication>();
+            services.AddTransient<ISupplierRepository, SupplierRepository>();
+
 
 
             services.AddDbContext<CustomerManagmentContext>(x => x.UseSqlServer(connectionString));
